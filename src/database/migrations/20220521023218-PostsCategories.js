@@ -25,6 +25,7 @@ module.exports = {
         primaryKey: true,
       },
     });
+    //
   },
 
   down: async (queryInterface, Sequelize) => {
