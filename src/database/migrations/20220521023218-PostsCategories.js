@@ -2,10 +2,10 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('PostsCategories', {
+    await queryInterface.createTable('PostCategories', {
       postId: {
         type: Sequelize.INTEGER,
-        references: {
+        refereces: {
           model: 'BlogPosts',
           key: 'id',
         },
@@ -16,7 +16,7 @@ module.exports = {
 
       categoryId: {
         type: Sequelize.INTEGER,
-          references: {
+          refereces: {
           model: 'Categories',
           key: 'id',
         },
@@ -25,11 +25,10 @@ module.exports = {
         primaryKey: true,
       },
     });
-    //
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('PostsCategories');
+    await queryInterface.dropTable('PostCategories');
   },
 };
 
