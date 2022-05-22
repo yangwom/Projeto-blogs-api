@@ -27,7 +27,7 @@ const passwordMiddleware = (req, res, next) => {
 };
 
 module.exports = {
-displayMiddleware,
-emailMiddleware,
-passwordMiddleware,
+  displayMiddleware,
+  emailMiddleware,
+  passwordMiddleware,
 };
