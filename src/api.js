@@ -1,5 +1,6 @@
 const express = require('express');
 const router = require('./routers');
+const errorMiddleware = require('./middleware/errorMiddleware');
 
 // ...
 
@@ -9,6 +10,7 @@ app.use(express.json());
 
 app.use(router);
 
+app.use(errorMiddleware);
 // ...
 
 // É importante exportar a constante `app`,
