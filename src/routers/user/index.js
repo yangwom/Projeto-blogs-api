@@ -11,7 +11,9 @@ const routerUser = express.Router();
 routerUser.post('/', 
 displayMiddleware, 
 emailMiddleware, 
-passwordMiddleware, 
+passwordMiddleware,
 controller.userCreated);
+
+routerUser.get('/');
 
 module.exports = routerUser;

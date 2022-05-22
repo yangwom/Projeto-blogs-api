@@ -3,6 +3,7 @@ const created = 201;
 const noContent = 204;
 const notFound = 404;
 const badRequest = 400;
+const unauthorized = 401;
 const conflict = 409;
 const Unprocessa = 422;
 const internalServerError = 500;
@@ -16,6 +17,8 @@ const passwordLength = {
     status: badRequest, 
     message: '"password" length must be at least 6 characters long' };
 const errorConflict = { status: conflict, message: 'User already registered' };
+
+const tokenNotValid = { status: unauthorized, message: 'Token not found' };
 
 module.exports = {
 success,
@@ -32,4 +35,5 @@ displayNameLength,
 emailNotValid,
 passwordLength,
 errorConflict,
+tokenNotValid,
 };                                   

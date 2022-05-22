@@ -5,7 +5,6 @@ const jwtConfig = require('../jwtConfig/jwtConfig');
 const { User } = require('../database/models');
 
 const loginServices = async (email, password) => {
-  console.log(password);
   const user = await User.findOne({ where: { email } });
 
   if (!user || user.password !== password) throw status.ivalidField;
