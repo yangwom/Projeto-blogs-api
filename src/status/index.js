@@ -8,6 +8,14 @@ const Unprocessa = 422;
 const internalServerError = 500;
 const requiredField = { status: badRequest, message: 'Some required fields are missing' };
 const ivalidField = { status: badRequest, message: 'Invalid fields' };
+const displayNameLength = {
+     status: badRequest, 
+     message: '"displayName" length must be at least 8 characters long' };
+const emailNotValid = { status: badRequest, message: '"email" must be a valid email' };
+const passwordLength = { 
+    status: badRequest, 
+    message: '"password" length must be at least 6 characters long' };
+const errorConflict = { status: conflict, message: 'User already registered' };
 
 module.exports = {
 success,
@@ -20,5 +28,8 @@ noContent,
 conflict,
 requiredField,
 ivalidField,
-
+displayNameLength,
+emailNotValid,
+passwordLength,
+errorConflict,
 };                                   
