@@ -1,11 +1,11 @@
 const status = require('../status');
 
 const loginMiddleware = async (req, res, next) => {
-const { email, password } = req.body;
+  const { email, password } = req.body;
 
-if (!email || !password) return next(status.requiredField);
+  if (!email || !password) return next(status.requiredField);
 
-next();
+  next();
 };
 
 module.exports = loginMiddleware;
