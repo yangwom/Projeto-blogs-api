@@ -8,9 +8,11 @@ const userIsValid = async (displayName, email, password, image) => {
 
   if (exist) throw status.errorConflict;
 
-   await User.create({ displayName, email, password, image });
+  await User.create({ displayName, email, password, image });
 
-  const token = jwt.sign({ data: exist }, process.env.JWT_SECRET, jwtConfig);
+  const emailCreated = exist;
+  
+  const token = jwt.sign({ data: emailCreated }, process.env.JWT_SECRET, jwtConfig);
 
   return token;
 };
