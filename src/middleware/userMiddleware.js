@@ -11,7 +11,7 @@ const displayMiddleware = (req, res, next) => {
 const emailMiddleware = (req, res, next) => {
   const { email } = req.body;
 
-  const isValid = !email && !email.includes('@') && !email.includes('.com');
+  const isValid = email && email.includes('@') && email.includes('.com');
 
   if (!isValid) return next(status.emailNotValid);
 
