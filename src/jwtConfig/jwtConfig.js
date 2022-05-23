@@ -1,3 +1,3 @@
-const jwtConfig = { expiresIn: '1d', algorithm: 'HS256' };
+const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
 
 module.exports = jwtConfig;
