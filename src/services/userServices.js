@@ -25,7 +25,16 @@ const user = await User.findAll({
 return user;
 };
 
+const getByid = async (id) => {
+  const data = await User.findByPk(id);
+
+  if (!data) throw status.userNotFound;
+
+  return data;
+};
+
 module.exports = {
   userIsValid,
   getAll,
+  getByid,
 };

@@ -20,6 +20,7 @@ const errorConflict = { status: conflict, message: 'User already registered' };
 
 const tokenNotValid = { status: unauthorized, message: 'Token not found' };
 const tokenExpiresIn = { status: unauthorized, message: 'Expired or invalid token' };
+const userNotFound = { status: notFound, message: 'User does not exist' };
 
 module.exports = {
 success,
@@ -38,4 +39,5 @@ passwordLength,
 errorConflict,
 tokenNotValid,
 tokenExpiresIn,
+userNotFound,
 };                                   
