@@ -26,7 +26,9 @@ return user;
 };
 
 const getByid = async (id) => {
-  const data = await User.findByPk(id);
+  const data = await User.findByPk(id, {
+    attributes: { exclude: ['password'] },
+  });
 
   if (!data) throw status.userNotFound;
 

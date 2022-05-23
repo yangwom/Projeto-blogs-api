@@ -16,5 +16,6 @@ passwordMiddleware,
 controller.userCreated);
 
 routerUser.get('/', authMiddleware, controller.getAll);
+routerUser.get('/:id', authMiddleware, controller.getById);
 
 module.exports = routerUser;
