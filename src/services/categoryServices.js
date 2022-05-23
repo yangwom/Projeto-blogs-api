@@ -1,14 +1,14 @@
 const { Category } = require('../database/models');
 
 const create = async (name) => {
-const { id } = await Category.create({ name });
+  const data = await Category.create({ name });
 
-return {
-    id,
-    name,
-};
+  return {
+    id: data.null,
+    name: data.name,
+  };
 };
 
 module.exports = {
-    create,
+  create,
 };
