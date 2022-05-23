@@ -11,6 +11,16 @@ const userCreated = async (req, res, next) => {
   }
 };
 
+const getAll = async (req, res, next) => {
+  try {
+   const data = await services.getAll();
+   return res.status(status.success).json(data);
+  } catch (err) {
+   next(err);
+  }
+};
+
 module.exports = {
 userCreated,
+getAll,
 };
