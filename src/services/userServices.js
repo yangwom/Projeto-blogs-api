@@ -11,12 +11,19 @@ const userIsValid = async (displayName, email, password, image) => {
   await User.create({ displayName, email, password, image });
 
   const emailCreated = exist;
-  
+
   const token = jwt.sign({ data: emailCreated }, process.env.JWT_SECRET, jwtConfig);
 
   return token;
 };
 
+const getAll = async () => {
+const user = await User.findAll();
+
+return user;
+};
+
 module.exports = {
   userIsValid,
+  getAll,
 };
