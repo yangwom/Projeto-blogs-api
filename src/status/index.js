@@ -19,6 +19,7 @@ const passwordLength = {
 const errorConflict = { status: conflict, message: 'User already registered' };
 
 const tokenNotValid = { status: unauthorized, message: 'Token not found' };
+const tokenExpiresIn = { status: unauthorized, message: 'Expired or invalid token' };
 
 module.exports = {
 success,
@@ -36,4 +37,5 @@ emailNotValid,
 passwordLength,
 errorConflict,
 tokenNotValid,
+tokenExpiresIn,
 };                                   

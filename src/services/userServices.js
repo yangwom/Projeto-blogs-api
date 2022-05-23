@@ -18,7 +18,9 @@ const userIsValid = async (displayName, email, password, image) => {
 };
 
 const getAll = async () => {
-const user = await User.findAll();
+const user = await User.findAll({
+  attributes: { exclude: ['password'] },
+});
 
 return user;
 };

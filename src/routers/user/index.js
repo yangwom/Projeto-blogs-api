@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../../controllers/userControllers');
+const { authMiddleware } = require('../../middleware/authMiddleware');
 const { 
 displayMiddleware, 
 emailMiddleware, 
@@ -14,6 +15,6 @@ emailMiddleware,
 passwordMiddleware,
 controller.userCreated);
 
-routerUser.get('/');
+routerUser.get('/', authMiddleware, controller.getAll);
 
 module.exports = routerUser;
