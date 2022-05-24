@@ -22,7 +22,7 @@ const tokenNotValid = { status: unauthorized, message: 'Token not found' };
 const tokenExpiresIn = { status: unauthorized, message: 'Expired or invalid token' };
 const userNotFound = { status: notFound, message: 'User does not exist' };
 const nameRequired = { status: badRequest, message: '"name" is required' };
-
+const categorysIdsNotFound = { status: notFound, message: '"categoryIds" not found' };
 module.exports = {
 success,
 notFound,
@@ -42,4 +42,5 @@ tokenNotValid,
 tokenExpiresIn,
 userNotFound,
 nameRequired,
+categorysIdsNotFound,
 };                                   
