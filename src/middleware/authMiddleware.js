@@ -16,11 +16,10 @@ const authMiddleware = async (req, res, next) => {
     if (!user) return;
     
     req.user = user;
+    next();
   } catch (err) {
     next(status.tokenExpiresIn);
   }
-
-  next();
 };
 
 module.exports = {
