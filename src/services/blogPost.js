@@ -1,16 +1,28 @@
+const Sequelize = require('sequelize');
 const { BlogPost, Category, User } = require('../database/models');
+const config = require('../database/config/config');
 const status = require('../status');
 
+const sequelize = new Sequelize(config.development);
+
 const create = async (title, content, userId, categoryIds) => {
-const result = await Category.findAll({
-    where: { id: categoryIds },
-});
+        const t = await sequelize.transaction();
 
-if (!result.length) throw status.categorysIdsNotFound;
+        try {
+            const createBlogPost = await BlogPost
 
-const createBlogPost = await BlogPost.create({ title, content, userId });
-await createBlogPost.addCategory(result);
-return createBlogPost;
+            .create({ title, content, userId }, { transaction: t });
+
+            await createBlogPost.addCategories(categoryIds, { transaction: t });
+
+            await t.commit();
+            
+            return createBlogPost;
+        } catch (err) {
+           await t.rollback();
+           
+            throw status.categorysIdsNotFound;
+        }
 };
 
 const getAll = async () => {
@@ -23,7 +35,18 @@ const data = await BlogPost.findAll({
 return data;
 };
 
+const getById = async (id) => {
+const data = await BlogPost.findByPk(id, {
+    include: 
+    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
+     { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+});
+
+return data;
+};
 module.exports = {
     create,
     getAll,
+    getById,
 };
