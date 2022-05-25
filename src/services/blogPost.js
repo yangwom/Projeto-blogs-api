@@ -1,15 +1,15 @@
-const { blogPost, PostCategory } = require('../database/models');
+const { BlogPost, Category } = require('../database/models');
 const status = require('../status');
 
-const create = async (title, content, categoryIds) => {
-const categoryid = await PostCategory.findAll({
+const create = async (title, content, userId, categoryIds) => {
+const categoryid = await Category.findAll({
     where: { id: categoryIds },
 });
 
-if (!categoryid) throw status.categorysIdsNotFound;
+if (categoryid.length !== categoryIds.length) throw status.categorysIdsNotFound;
 
-const createBlogPost = await blogPost.create({ title, content, categoryIds });
-
+const createBlogPost = await BlogPost.create({ title, content, userId });
+createBlogPost.addCategories(categoryid);
 return createBlogPost;
 };
 

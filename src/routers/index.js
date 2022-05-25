@@ -9,6 +9,6 @@ const router = express.Router();
 router.use('/login', routerLogin);
 router.use('/user', routerUser);
 router.use('/categories', routerCategory);
-router.use('/blogPost', routerBlogPost);
+router.use('/post', routerBlogPost);
 
 module.exports = router;

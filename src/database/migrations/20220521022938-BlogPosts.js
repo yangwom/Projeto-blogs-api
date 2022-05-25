@@ -26,7 +26,7 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
-        primaryKey: true,
+        allowNull: false,
       },
 
       createdAt: {

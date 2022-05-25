@@ -3,16 +3,23 @@ const BlogPost = (sequelize, DataTypes) => {
         id: {
           type: DataTypes.INTEGER,
           primaryKey: true,
+          autoIncrement: true,
         },
         title: DataTypes.STRING,
         content: DataTypes.STRING,
+
         userId: {
-        type: DataTypes.STRING,
-        primaryKey: DataTypes.INTEGER,
+        type: DataTypes.INTEGER,
         foreignKey: true
         },
-        published: DataTypes.STRING,
-        updated: DataTypes.STRING,
+        published: {
+          type: DataTypes.DATE,
+          defaultValue: new Date()
+        }, 
+        updated: {
+           type: DataTypes.DATE,
+           defaultValue: new Date(),
+        } 
     }, {
         timestamps: false,
         tableName: 'BlogPosts',

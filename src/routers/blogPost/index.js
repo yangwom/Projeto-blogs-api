@@ -1,6 +1,6 @@
 const express = require('express');
 const { authMiddleware } = require('../../middleware/authMiddleware');
-const categoryMiddleware = require('../../middleware/categoryMiddleware');
+const categoryMiddleware = require('../../middleware/blogPostMiddleware');
 const controllers = require('../../controllers/blogPostController');
 
 const routerBlogPost = express.Router();
