@@ -14,7 +14,9 @@ return createBlogPost;
 };
 
 const getAll = async () => {
-const data = await BlogPost.getAll();
+const data = await BlogPost.findAll({
+    include: { model: Category, as: 'categories', through: { attributes: [] } },
+});
 return data;
 };
 
