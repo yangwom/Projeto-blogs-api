@@ -1,10 +1,11 @@
 const express = require('express');
 const { authMiddleware } = require('../../middleware/authMiddleware');
-const categoryMiddleware = require('../../middleware/blogPostMiddleware');
+const postMiddleware = require('../../middleware/postMiddleware');
 const controllers = require('../../controllers/blogPostController');
 
 const routerBlogPost = express.Router();
 
-routerBlogPost.post('/', authMiddleware, categoryMiddleware, controllers.create);
+routerBlogPost.post('/', authMiddleware, postMiddleware, controllers.create);
+routerBlogPost.get('/', authMiddleware, controllers.getAll);
 
 module.exports = routerBlogPost;
