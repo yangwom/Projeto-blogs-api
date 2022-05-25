@@ -13,6 +13,12 @@ await createBlogPost.addCategory(result);
 return createBlogPost;
 };
 
+const getAll = async () => {
+const data = await BlogPost.getAll();
+return data;
+};
+
 module.exports = {
     create,
+    getAll,
 };
