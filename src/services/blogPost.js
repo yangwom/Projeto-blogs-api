@@ -14,7 +14,7 @@ const create = async (title, content, userId, categoryIds) => {
       .create({ title, content, userId }, { transaction: t });
 
     await createBlogPost.addCategories(categoryIds, { transaction: t });
-
+    
     await t.commit();
 
     return createBlogPost;
