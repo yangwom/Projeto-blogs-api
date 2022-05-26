@@ -58,19 +58,20 @@ const update = async (id, title, content, userId) => {
   return getById(id);
 };
 
-const delete = async (id, userId) => {
+const deleted = async (id, userId) => {
   const isUser = await BlogPost.findByPk(id);
 
   if (isUser.id !== userId) throw status.unauthorizedUser;
-  
+
   await BlogPost.destroy({
-    where: { id }
-  })
-}
+    where: { id },
+  });
+};
 
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  deleted,
 };
