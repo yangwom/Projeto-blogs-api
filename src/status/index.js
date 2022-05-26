@@ -24,6 +24,7 @@ const userNotFound = { status: notFound, message: 'User does not exist' };
 const nameRequired = { status: badRequest, message: '"name" is required' };
 const categorysIdsNotFound = { status: badRequest, message: '"categoryIds" not found' };
 const postNotFound = { status: notFound, message: 'Post does not exist' };
+const unauthorizedUser = { status: unauthorized, message: 'Unauthorized user' };
 module.exports = {
 success,
 notFound,
@@ -45,4 +46,5 @@ userNotFound,
 nameRequired,
 categorysIdsNotFound,
 postNotFound,
+unauthorizedUser,
 };                                   

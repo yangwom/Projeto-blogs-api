@@ -6,62 +6,61 @@ const status = require('../status');
 const sequelize = new Sequelize(config.development);
 
 const create = async (title, content, userId, categoryIds) => {
-        const t = await sequelize.transaction();
+  const t = await sequelize.transaction();
 
-        try {
-            const createBlogPost = await BlogPost
-            
-            .create({ title, content, userId }, { transaction: t });
-            
-            await createBlogPost.addCategories(categoryIds, { transaction: t });
+  try {
+    const createBlogPost = await BlogPost
 
-            await t.commit();
-            
-            return createBlogPost;
-        } catch (err) {
-           await t.rollback();
-           
-            throw status.categorysIdsNotFound;
-        }
+      .create({ title, content, userId }, { transaction: t });
+
+    await createBlogPost.addCategories(categoryIds, { transaction: t });
+
+    await t.commit();
+
+    return createBlogPost;
+  } catch (err) {
+    await t.rollback();
+
+    throw status.categorysIdsNotFound;
+  }
 };
 
 const getAll = async () => {
-const data = await BlogPost.findAll({
-    include: 
-    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
-     { model: Category, as: 'categories', through: { attributes: [] } },
-    ],
-});
-return data;
+  const data = await BlogPost.findAll({
+    include:
+      [{ model: User, as: 'user', attributes: { exclude: 'password' } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+  });
+  return data;
 };
 
 const getById = async (id) => {
-const data = await BlogPost.findByPk(id, {
-    include: 
-    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
-     { model: Category, as: 'categories', through: { attributes: [] } },
-    ],
-});
+  const data = await BlogPost.findByPk(id, {
+    include:
+      [{ model: User, as: 'user', attributes: { exclude: 'password' } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+  });
 
-if (!data) throw status.postNotFound;
-
-return data;
-};
-
-const update = async (id) => {
-const data = await BlogPost.findByPk(id, {
-    include: 
-    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
-     { model: Category, as: 'categories', through: { attributes: [] } },
-    ] });
   if (!data) throw status.postNotFound;
 
-return data;
+  return data;
+};
+
+const update = async (id, title, content, userId) => {
+  const isUser = await BlogPost.findByPk(id);
+
+  if (isUser.id !== userId) throw status.unauthorizedUser;
+
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  return getById(id);
 };
 
 module.exports = {
-    create,
-    getAll,
-    getById,
-    update,
+  create,
+  getAll,
+  getById,
+  update,
 };

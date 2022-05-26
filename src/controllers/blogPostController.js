@@ -6,7 +6,7 @@ const create = async (req, res, next) => {
   const { user } = req;
   try {
     const data = await services.create(title, content, user.id, categoryIds);
-     return res.status(status.created).json(data);
+    return res.status(status.created).json(data);
   } catch (err) {
     next(err);
   }
@@ -23,16 +23,32 @@ const getAll = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   const { id } = req.params;
-try {
-const data = await services.getById(id);
-return res.status(status.success).json(data);
-} catch (err) {
-  next(err);
-}
+  try {
+    const data = await services.getById(id);
+    return res.status(status.success).json(data);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const update = async (req, res, next) => {
+  const { id } = req.params;
+
+  const { title, content } = req.body;
+
+  const { user } = req;
+
+  try {
+    const data = await services.update(id, title, content, user.id);
+    return res.status(status.success).json(data);
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };
