@@ -23,6 +23,7 @@ const tokenExpiresIn = { status: unauthorized, message: 'Expired or invalid toke
 const userNotFound = { status: notFound, message: 'User does not exist' };
 const nameRequired = { status: badRequest, message: '"name" is required' };
 const categorysIdsNotFound = { status: badRequest, message: '"categoryIds" not found' };
+const postNotFound = { status: notFound, message: 'Post does not exist' };
 module.exports = {
 success,
 notFound,
@@ -43,4 +44,5 @@ tokenExpiresIn,
 userNotFound,
 nameRequired,
 categorysIdsNotFound,
+postNotFound,
 };                                   
