@@ -10,9 +10,9 @@ const create = async (title, content, userId, categoryIds) => {
 
         try {
             const createBlogPost = await BlogPost
-
+            
             .create({ title, content, userId }, { transaction: t });
-
+            
             await createBlogPost.addCategories(categoryIds, { transaction: t });
 
             await t.commit();
