@@ -7,5 +7,15 @@ const post = async (req, res, next) => {
   
     next();
   };
+
+  const postPut = async (req, res, next) => {
+    const { title, content } = req.body;
+
+    if (!title || !content) return next(status.requiredField);
+    next();
+  };
   
-  module.exports = post;
+  module.exports = {
+    postPut,
+    post,
+  };
