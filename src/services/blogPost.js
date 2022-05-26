@@ -47,8 +47,21 @@ if (!data) throw status.postNotFound;
 
 return data;
 };
+
+const update = async (id) => {
+const data = await BlogPost.findByPk(id, {
+    include: 
+    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
+     { model: Category, as: 'categories', through: { attributes: [] } },
+    ] });
+  if (!data) throw status.postNotFound;
+
+return data;
+};
+
 module.exports = {
     create,
     getAll,
     getById,
+    update,
 };
