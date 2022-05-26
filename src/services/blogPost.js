@@ -43,6 +43,8 @@ const data = await BlogPost.findByPk(id, {
     ],
 });
 
+if (!data) throw status.postNotFound;
+
 return data;
 };
 module.exports = {
