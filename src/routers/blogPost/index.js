@@ -7,6 +7,6 @@ const routerBlogPost = express.Router();
 
 routerBlogPost.post('/', authMiddleware, postMiddleware, controllers.create);
 routerBlogPost.get('/', authMiddleware, controllers.getAll);
-// routerBlogPost.get('/:id', authMiddleware, controllers.getById);
+routerBlogPost.get('/:id', authMiddleware, controllers.getById);
 
 module.exports = routerBlogPost;
