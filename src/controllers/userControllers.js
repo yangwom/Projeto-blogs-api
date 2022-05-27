@@ -30,8 +30,19 @@ return res.status(status.success).json(data);
 }
 };
 
+const deleted = async (req, res, next) => {
+  const { user } = req;
+  try {
+    const data = await services.deleted(user);
+    return res.status(status.noContent).json(data);
+    } catch (err) {
+      next(err);
+    }
+};
+
 module.exports = {
   userCreated,
   getAll,
   getById,
+  deleted,
 };

@@ -36,8 +36,9 @@ const getByid = async (id) => {
 };
 
 const deleted = async (me) => {
-const { id } = me.data;
-await User.destroy({ where: { id } });
+  const { id } = me.data;
+
+  await User.destroy({ where: { id } });
 };
 
 module.exports = {
