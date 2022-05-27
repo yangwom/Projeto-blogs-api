@@ -14,7 +14,7 @@ const create = async (title, content, userId, categoryIds) => {
       .create({ title, content, userId }, { transaction: t });
 
     await createBlogPost.addCategories(categoryIds, { transaction: t });
-    
+
     await t.commit();
 
     return createBlogPost;
@@ -59,11 +59,12 @@ const update = async (id, title, content, userId) => {
 };
 
 const deleted = async (id, userId) => {
-  const isUser = await BlogPost.findByPk(id);
+  const post = await BlogPost.findByPk(id);
+  if (!post) throw status.postNotFound;
 
-  if (isUser.id !== userId) throw status.unauthorizedUser;
+  if (post.id !== userId) throw status.unauthorizedUser;
 
-  await BlogPost.destroy({
+   await BlogPost.destroy({
     where: { id },
   });
 };

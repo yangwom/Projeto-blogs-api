@@ -9,5 +9,5 @@ routerBlogPost.post('/', authMiddleware, postMiddleware, controllers.create);
 routerBlogPost.get('/', authMiddleware, controllers.getAll);
 routerBlogPost.get('/:id', authMiddleware, controllers.getById);
 routerBlogPost.put('/:id', authMiddleware, postPut, controllers.update);
-routerBlogPost.delete('/:id', authMiddleware, controllers.delete);
+routerBlogPost.delete('/:id', authMiddleware, controllers.deleted);
 module.exports = routerBlogPost;
