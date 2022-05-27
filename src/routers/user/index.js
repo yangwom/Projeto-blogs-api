@@ -17,5 +17,6 @@ controller.userCreated);
 
 routerUser.get('/', authMiddleware, controller.getAll);
 routerUser.get('/:id', authMiddleware, controller.getById);
+routerUser.delete('/me', authMiddleware, controller.deleted);
 
 module.exports = routerUser;
