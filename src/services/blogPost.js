@@ -60,9 +60,10 @@ const update = async (id, title, content, userId) => {
 
 const deleted = async (id, userId) => {
   const post = await BlogPost.findByPk(id);
+
   if (!post) throw status.postNotFound;
 
-  if (post.id !== userId) throw status.unauthorizedUser;
+  if (post.userId !== userId) throw status.unauthorizedUser;
 
    await BlogPost.destroy({
     where: { id },

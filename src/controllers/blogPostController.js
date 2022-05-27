@@ -52,8 +52,8 @@ const deleted = async (req, res, next) => {
    const { user } = req;
 
 try {
-const data = await services.deleted(id, user.id);
-return res.status(status.noContent).json(data);
+await services.deleted(id, user.id);
+return res.status(status.noContent).end();
 } catch (err) {
 next(err);
 }
