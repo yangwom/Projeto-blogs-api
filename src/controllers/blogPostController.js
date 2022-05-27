@@ -58,7 +58,7 @@ return res.status(status.noContent).json(data);
 next(err);
 }
 };
-
+// tentando passar no delete
 module.exports = {
   create,
   getAll,
