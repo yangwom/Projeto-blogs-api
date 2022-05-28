@@ -48,10 +48,12 @@ const getById = async (id) => {
   return data;
 };
 
-const update = async (id, title, content, userId) => {
+const update = async (id, data, userId) => {
   const isUser = await BlogPost.findByPk(id);
 
-  if (isUser.id !== userId) throw status.unauthorizedUser;
+  const { title, content } = data;
+
+  if (isUser.id !== userId.data.id) throw status.unauthorizedUser;
 
   await BlogPost.update({ title, content }, { where: { id } });
 
