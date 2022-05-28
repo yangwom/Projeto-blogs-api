@@ -17,6 +17,7 @@ module.exports = {
   async getAll(req, res, next) {
     try {
       const data = await services.getAll();
+
       return res.json(data);
     } catch (err) {
       next(err);
@@ -27,7 +28,8 @@ module.exports = {
     const { id } = req.params;
     try {
       const data = await services.getById(id);
-      return res.status(status.success).json(data);
+
+      return res.json(data);
     } catch (err) {
       next(err);
     }
@@ -71,12 +73,3 @@ module.exports = {
     }
   },
 };
-
-// tentando passar no delete
-// module.exports = {
-//   create,
-//   getAll,
-//   getById,
-//   update,
-//   deleted,
-// };
