@@ -34,12 +34,10 @@ const getById = async (req, res, next) => {
 const update = async (req, res, next) => {
   const { id } = req.params;
 
-  const { title, content } = req.body;
-
   const { user } = req;
-
+  console.log(req.body);
   try {
-    const data = await services.update(id, title, content, user.data.id);
+    const data = await services.update(id, req.body, user);
     return res.status(status.success).json(data);
   } catch (err) {
     next(err);
