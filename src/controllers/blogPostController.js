@@ -33,11 +33,23 @@ module.exports = {
     }
   },
 
+  async search(req, res, next) {
+    const { q } = req.query;
+    console.log(q);
+  try {
+    const data = await services.search(q);
+
+    return res.json(data);
+  } catch (err) {
+    next(err);
+  }
+  },
+
   async update(req, res, next) {
     const { id } = req.params;
 
     const { user } = req;
-    console.log(req.body);
+  
     try {
       const data = await services.update(id, req.body, user);
       return res.status(status.success).json(data);

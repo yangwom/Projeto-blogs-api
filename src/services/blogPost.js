@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const { where } = require('sequelize');
 const { BlogPost, Category, User } = require('../database/models');
 const config = require('../database/config/config');
 const status = require('../status');
@@ -73,12 +74,20 @@ const deleted = async (id, userId) => {
 };
 
 const search = async (q) => {
+console.log(q);
+
   const searchPost = await BlogPost.findAll({
-    attributes: ['title', 'content'],
     where: {
-      title: { [Sequelize.Op.iLike]: `${q}%` },
-      content: { [Sequelize.Op.iLike]: `${q}%` },
-    },
+      [Sequelize.Op.or]: [
+        { title: { [Sequelize.Op.like]: `${q}%` } }, 
+        { content: { [Sequelize.Op.like]: `${q}%` } },
+      ],
+     },
+     
+    include:
+    [{ model: User, as: 'user', attributes: { exclude: 'password' } },
+    { model: Category, as: 'categories', through: { attributes: [] } },
+    ], 
   });
   return searchPost;
 };
