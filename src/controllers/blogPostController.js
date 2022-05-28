@@ -2,7 +2,7 @@ const services = require('../services/blogPost');
 const status = require('../status');
 
 module.exports = {
-  
+
   async create(req, res, next) {
     const { title, content, categoryIds } = req.body;
     const { user } = req;
@@ -17,7 +17,7 @@ module.exports = {
   async getAll(req, res, next) {
     try {
       const data = await services.getAll();
-      return res.status(status.success).json(data);
+      return res.json(data);
     } catch (err) {
       next(err);
     }

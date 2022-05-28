@@ -67,9 +67,20 @@ const deleted = async (id, userId) => {
 
   if (post.userId !== userId) throw status.unauthorizedUser;
 
-   await BlogPost.destroy({
+  await BlogPost.destroy({
     where: { id },
   });
+};
+
+const search = async (q) => {
+  const searchPost = await BlogPost.findAll({
+    attributes: ['title', 'content'],
+    where: {
+      title: { [Sequelize.Op.iLike]: `${q}%` },
+      content: { [Sequelize.Op.iLike]: `${q}%` },
+    },
+  });
+  return searchPost;
 };
 
 module.exports = {
